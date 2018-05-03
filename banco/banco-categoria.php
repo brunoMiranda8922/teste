@@ -1,5 +1,5 @@
 <?php require_once("conexao.php");
-require_once("class/categoria.php");
+require_once("class/Categoria.php");
     
 
 function listarCategoria($conexao){
