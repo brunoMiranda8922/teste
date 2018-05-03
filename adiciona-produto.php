@@ -1,12 +1,8 @@
 <?php 
 require_once("cabecalho.php");
-require_once("banco/banco-produto.php"); 
 require_once("banco/verifica-usuario.php");
-require_once("class/produto.php");
-require_once("class/categoria.php");
 
 verificarUsuario();
-
 
 $categoria = new Categoria();
 $categoria->setId($_POST["categoria_id"]);  
@@ -23,16 +19,19 @@ if (array_key_exists('usado', $_POST)) {
 } 
 
 $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+$produtoDAO = new ProdutoDAO($conexao);
 
-if (inserirProduto($conexao,  $produto)) { 
+if ($produtoDAO->inserirProduto($produto)) { 
 
-    ?>
+?>
     <p class="alert-success"> Produto <?= $produto->getNome() ?> de  <?= $produto->getPreco() ?> R$, adicionado com sucesso! </p>
 <?php
+
 } else {
         $msg = mysqli_error($conexao);
-    ?>
+?>
     <p class="alert-danger"> Produto <?= $produto->getNome() ?>, <?= $produto->getPreco() ?> não foi adicionado, erro <?= $msg ?></p>  
+
 <?php }
 
 mysqli_close($conexao);
