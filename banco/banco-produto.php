@@ -1,6 +1,6 @@
 <?php require_once("conexao.php");
-require_once("class/produto.php");
-require_once("class/categoria.php");
+require_once("class/Produto.php");
+require_once("class/Categoria.php");
 
 function listarProdutos($conexao) {
     $produtos = array();
