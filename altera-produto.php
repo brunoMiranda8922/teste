@@ -1,14 +1,10 @@
 <?php 
 require_once("cabecalho.php");
 require_once("banco/banco-produto.php"); 
-require_once("class/produto.php");
-require_once("class/categoria.php");
-
 
 $categoria = new Categoria();
 $categoria->setId($_POST["categoria_id"]); 
 
- 
 $nome = $_POST["nome"];
 $preco = $_POST["preco"]; 
 $descricao = $_POST["descricao"]; 
@@ -25,11 +21,13 @@ $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
 $produto->setId($_POST["id"]);
 $produto->setUsado($usado);
 
-
-if (atualizarProduto($conexao, $produto)) { 
+$produdoDAO = new ProdutoDAO($conexao);
+if ($produdoDAO->atualizarProduto($produto)) { 
 ?>
     <p class="alert-success"> Produto <?= $produto->getNome() ?> de  <?= $produto->getPreco() ?> R$, alterado com sucesso! </p>
-<?php 
+    
+<?php
+
 } else {
     $msg = mysqli_error($conexao);
 ?>
