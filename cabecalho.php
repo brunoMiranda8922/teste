@@ -1,5 +1,12 @@
+<?php 
+    function carregaClasse($nomeDaClasse){
+        require_once("class/".$nomeDaClasse.".php");
+    }
+        spl_autoload_register("carregaClasse");
+        require_once("banco/conexao.php");
+?>
 <html>
-<head>
+<head>                                                      
     <meta charset="latin1">
     <title> Minha loja </title>
     
