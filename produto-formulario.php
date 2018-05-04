@@ -1,8 +1,8 @@
 <?php require_once("cabecalho.php");
 require_once("banco/banco-categoria.php"); 
 require_once("banco/verifica-usuario.php");
-require_once("class/categoria.php");
-require_once("class/produto.php");
+require_once("class/Categoria.php");
+require_once("class/Produto.php");
 
 verificarUsuario();
 

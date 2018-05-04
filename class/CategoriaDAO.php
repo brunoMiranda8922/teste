@@ -1,0 +1,27 @@
+<?php 
+class CategoriaDAO { 
+    private $conexao;
+
+    function __construct($conexao){
+        $this->conexao = $conexao;
+    }
+
+    function listarCategoria(){
+        $categorias = array();
+        $query = "select * from categoria";
+        $resultado = mysqli_query($this->conexao, $query);
+    
+        while ($categoria_array = mysqli_fetch_assoc($resultado)) {
+    
+            $categoria = new Categoria();
+            $categoria->setId($categoria_array['id']);
+            $categoria->setNome($categoria_array['nome']);
+    
+            array_push($categorias, $categoria);
+        }
+    
+        return $categorias;
+    }
+}
+
+?>

@@ -21,6 +21,7 @@
 				<td>Categoria</td>
 				<td>
 				    <select name="categoria_id" class="form-control">
+					<option disabled selected> Selecione uma categoria </option>
 				    <?php foreach ($categorias as $categoria) { 
                         $categoriaSelecioda = $produto->getCategoria()->getId() == $categoria->getId();    
                         $selecao = $categoriaSelecioda ? "selected='selected'" : ""; 
@@ -29,5 +30,24 @@
                     <?php } ?>
 				    </select>	
 				</td>
+			</tr> 
+			<tr>
+				<td>Tipo do Produto</td>
+				<td>
+				    <select name="tipoProduto" class="form-control">
+					<option disabled selected> Selecione um tipo </option>
+					<?php
+						$tipos = array("Produto", "Livro");
+				    	foreach ($tipos as $tipo) { 
+						$tipoProdutoSelecionado = $produto->getTipoProduto() == $tipo;    
+                        $selecao = $tipoProdutoSelecionado ? "selected='selected'" : ""; 
+                    ?>
+                        <option value="<?= $tipo ?>" <?= $selecao?>><?= $tipo ?> </br> </option>
+                    <?php } ?>
+				    </select>	
+				</td>
 			</tr>
-			
+			<tr>
+			   <td>ISBN </td>
+			   <td><input type="text" name="isbn" value="<?= $produto->getIsbn() ?>" class="form-control"> </td>
+			</tr>

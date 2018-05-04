@@ -11,6 +11,8 @@ $nome = $_POST["nome"];
 $preco = $_POST["preco"]; 
 $descricao = $_POST["descricao"];
 #$produto->setCategoria($categoria);
+$isbn = $_POST["isbn"];
+$tipoProduto = $_POST["tipoProduto"];
 
 if (array_key_exists('usado', $_POST)) {
     $usado = "true";
@@ -19,6 +21,8 @@ if (array_key_exists('usado', $_POST)) {
 } 
 
 $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+$produto-> setIsbn($isbn);
+$produto->setTipoProduto($tipoProduto);
 $produtoDAO = new ProdutoDAO($conexao);
 
 if ($produtoDAO->inserirProduto($produto)) { 

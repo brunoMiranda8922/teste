@@ -16,8 +16,9 @@ function listarProdutos($conexao) {
         $nome = $produto_array['nome']; 
         $preco = $produto_array['preco'];
         $descricao = $produto_array['descricao'];
-        
         $usado = $produto_array['usado'];
+        $isbn = $produto_array['isbn'];
+        $tipoProduto = $produto_array['tipoProduto'];
         
         $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
         $produto->setId($produto_array['id']); 
@@ -29,10 +30,11 @@ function listarProdutos($conexao) {
 
 function inserirProduto($conexao, Produto $produto){
    
-    $query = "insert into produtos (nome, preco, descricao, categoria_id, usado) 
+    $query = "insert into produtos (nome, preco, descricao, categoria_id, usado, isbn, tipoProduto) 
         values ('{$produto->getNome()}', {$produto->getPreco()}, '{$produto->getDescricao()}', 
-            {$produto->getCategoria()->getId()}, {$produto->getUsado()})";
-            
+            {$produto->getCategoria()->getId()}, {$produto->getUsado()}, {$produto->getIsbn()},
+                {$produto->getTipoProduto()})";
+
     return mysqli_query($conexao, $query);
    
 }
