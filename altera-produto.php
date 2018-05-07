@@ -8,6 +8,8 @@ $categoria->setId($_POST["categoria_id"]);
 $nome = $_POST["nome"];
 $preco = $_POST["preco"]; 
 $descricao = $_POST["descricao"]; 
+$tipoProduto = $_POST['tipoProduto'];
+$isbn = $_POST['isbn'];
 #$produto->setCategoria($categoria);
 
 if (array_key_exists('usado', $_POST)) {
@@ -16,10 +18,17 @@ if (array_key_exists('usado', $_POST)) {
     $usado = "false";
 } 
 
-$produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+if ($tipoProduto == 'Livro'){ 
+    $produto = new Livro($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
+    $produto-> setIsbn($isbn);
+} else { 
+    $produto = new Produto($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
+}
+
 
 $produto->setId($_POST["id"]);
-$produto->setUsado($usado);
+#$produto->setUsado($usado);
+
 
 $produdoDAO = new ProdutoDAO($conexao);
 if ($produdoDAO->atualizarProduto($produto)) { 
