@@ -20,7 +20,13 @@ require_once("banco/mostra-alerta.php");
         <td><?= $produto->descontoProduto(0.5) ?></td>
         <td><?= utf8_encode(substr($produto->getDescricao(), 0 , 40))?></td>
         <td><?= $produto->getCategoria()->getNome() ?></td>
-        <td>ISBN:<?= $produto->getIsbn() ?></td>
+        <td>
+            <?php 
+                if($produto->temIsbn()) {
+                    echo "ISBN: ".$produto->getIsbn();
+                } 
+            ?>
+        </td>
        
         <td><a class="btn btn-primary" href="produto-alterar-formulario.php?id=<?= $produto->getId()?>">Alterar</a></td>
         
