@@ -20,9 +20,14 @@ if (array_key_exists('usado', $_POST)) {
     $usado = "false";
 } 
 
-$produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
-$produto-> setIsbn($isbn);
-$produto->setTipoProduto($tipoProduto);
+if ($tipoProduto == 'Livro'){ 
+    $produto = new Livro($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
+    $produto-> setIsbn($isbn);
+} else { 
+    $produto = new Produto($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
+}
+
+#$produto->setTipoProduto($tipoProduto);
 $produtoDAO = new ProdutoDAO($conexao);
 
 if ($produtoDAO->inserirProduto($produto)) { 
