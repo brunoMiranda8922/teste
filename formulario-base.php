@@ -37,12 +37,22 @@
 				    <select name="tipoProduto" class="form-control">
 					<option disabled selected> Selecione um tipo </option>
 					<?php
-						$tipos = array("Produto", "Livro");
+						$tipos = array("Produto", "Livro Fisico", "Ebook");
 				    	foreach ($tipos as $tipo) { 
-						$tipoProdutoSelecionado = get_class($produto) == $tipo;    
-                        $selecao = $tipoProdutoSelecionado ? "selected='selected'" : ""; 
+							$tipoSemEspaco = str_replace(' ', '', $tipo);
+							$tipoProdutoSelecionado = get_class($produto) == $tipoSemEspaco;    
+                        	$selecao = $tipoProdutoSelecionado ? "selected='selected'" : ""; 
                     ?>
-                        <option value="<?= $tipo ?>" <?= $selecao?>><?= $tipo ?> </br> </option>
+                        
+						<?php if ($tipo == "Livro Fisico") : ?>
+                    		<optgroup label="Livros">
+                		<?php endif ?>
+							<option value="<?= $tipoSemEspaco ?>" <?= $selecao?>><?= $tipo ?> </br> </option>
+                       
+                		<?php if ($tipo == "Ebook") : ?>
+                    		</optgroup>
+                		<?php endif ?>
+            
                     <?php } ?>
 				    </select>	
 				</td>
@@ -50,4 +60,12 @@
 			<tr>
 			   <td>ISBN </td>
 			   <td><input type="text" name="isbn" value="<?php if($produto->temIsbn()) { echo $produto->getIsbn(); }?> " class="form-control"></td>
+			</tr>
+			<tr>
+			   <td>Taxa de Impressão </td>
+			   <td><input type="text" name="taxaImpressao" value="<?php if($produto->temTaxaImpressao()) { echo $produto->getTaxaImpressao(); }?> " class="form-control"></td>
+			</tr>
+			<tr>
+			   <td>Water Make </td>
+			   <td><input type="text" name="waterMake" value="<?php if($produto->temWaterMake()) { echo $produto->getWaterMake(); }?> " class="form-control"></td>
 			</tr>
