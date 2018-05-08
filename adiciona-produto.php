@@ -13,6 +13,8 @@ $descricao = $_POST["descricao"];
 #$produto->setCategoria($categoria);
 $isbn = $_POST["isbn"];
 $tipoProduto = $_POST["tipoProduto"];
+$taxaImpressao = $_POST["taxaImpressao"];
+$waterMake = $_POST["waterMake"];
 
 if (array_key_exists('usado', $_POST)) {
     $usado = "true";
@@ -20,9 +22,14 @@ if (array_key_exists('usado', $_POST)) {
     $usado = "false";
 } 
 
-if ($tipoProduto == 'Livro'){ 
-    $produto = new Livro($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
+if ($tipoProduto == 'Livro Fisico'){ 
+    $produto = new LivroFisico($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
     $produto-> setIsbn($isbn);
+    $produdo-> setTaxaImpressao($taxaImpressao);
+} else if ($tipoProduto == 'Livro Fisico'){ 
+    $produto = new Ebook($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
+    $produto-> setIsbn($isbn);
+    $produto-> setWaterMake($waterMake);
 } else { 
     $produto = new Produto($nome, $preco, $descricao, $categoria, $usado, $tipoProduto);
 }
