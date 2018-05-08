@@ -25,6 +25,6 @@ $produto = new Produto("", "", "", $categoria, "");
 			<tr>
 		 		<td><input class="btn btn-primary" type="submit" value="cadastrar"></td>
 			</tr>
-
+	</table>
 	</form>
 <?php require_once("rodape.php");?>
