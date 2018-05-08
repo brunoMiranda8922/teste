@@ -17,7 +17,7 @@ require_once("banco/mostra-alerta.php");
     <tr>
         <td><?= $produto->getNome() ?></td>
         <td><?= $produto->getPreco() ?></td>
-        <td><?= $produto->descontoProduto(0.5) ?></td>
+        <td><?= $produto->calcularImposto() ?></td>
         <td><?= utf8_encode(substr($produto->getDescricao(), 0 , 40))?></td>
         <td><?= $produto->getCategoria()->getNome() ?></td>
         <td>
