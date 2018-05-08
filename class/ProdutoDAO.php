@@ -49,11 +49,19 @@ class ProdutoDAO {
         if ($produto->temIsbn()) { 
             $isbn = $produto->getIsbn();
         }
+        $taxaImpressao = "";
+        if ($produto->temTaxaImpressao()) { 
+            $taxaImpressao = $produto->getTaxaImpressao();
+        }
+        $waterMake = "";
+        if ($produto->temWaterMake()) { 
+            $waterMake = $produto->getWaterMake();
+        }
         $tipoProduto = get_class($produto);
-        $query = "insert into produtos (nome, preco, descricao, categoria_id, usado, isbn, tipoProduto) 
+        $query = "insert into produtos (nome, preco, descricao, categoria_id, usado, isbn, tipoProduto, taxaImpressao, waterMake) 
                     values ('{$produto->getNome()}', {$produto->getPreco()}, '{$produto->getDescricao()}', 
                         {$produto->getCategoria()->getId()}, {$produto->getUsado()}, '{$isbn}',
-                             '{$tipoProduto}')";
+                            '{$tipoProduto}', '{$taxaImpressao}', '{$waterMake}')";
                 
         return mysqli_query($this->conexao, $query);
     
