@@ -4,7 +4,7 @@ class Produto {
 
     private $id;
     private $nome;
-    private $preco;
+    protected $preco;
     private $descricao;
     private $categoria;
     private $usado; 
@@ -90,6 +90,18 @@ class Produto {
 
     public function temIsbn() { 
         return $this instanceof Livro;  
+    }
+
+    public function temTaxaImpressao() { 
+        return $this instanceof LivroFisico;  
+    }
+
+    public function temWaterMake() { 
+        return $this instanceof Ebook;  
+    }
+
+    public function calcularImposto() {
+        return $this->preco * 0.195;
     }
 }
 
